@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+{% load crispy_forms_tags %}
+{% block main %}
+
+
+<h2>Lista de Automoveis</h2>
+
+
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>Patente</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Opções</th>
+    </tr>
+    </thead>
+    {% for a in autos%}
+        <tr>
+            <td>{{a.patente}}</td>
+            <td>{{a.marca.nome}}</td>
+            <td>{{a.modelo}}</td>
+            <td>{{a.ano}}</td>
+            <td>
+                <a  class="btn btn-danger" href="{% url 'eliminar_auto' a.id %}">Eliminar</a>
+                <a class="btn btn-dark" href="{% url 'modificar_auto' a.id %}">Modificar</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% if messages %}
+
+    {% for m in messages %}
+
+    <div>{{ m }}</div>
+
+    {% endfor %}
+{% else %}
+{% endif %}
+{% endblock main%}

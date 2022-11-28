@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<form class="form-group" action="" id="formularioAutomoveis" method="POST">
+    {% csrf_token %}
+
+    <input class="input-group" type="hidden" name="txtId" id="txtId" value="{{ auto.id}}">
+
+
+    <label for="">Patente</label>
+    <input type="text" name="txtPatente" id="txtPatente" value="{{ auto.patente }}">
+    <br>
+    <label for="">Marca</label>
+    <select name="cboMarca" id="cboMarca">
+        {% for m in marcas %}
+        <option>
+        
+        {% if m.id == auto.marca.id %}
+        {{ 'selected' }}
+        {% endif %}
+
+        value="{{ m.id }}"{{ m.nome}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="">Modelo</label>
+    <input type="text" name="txtModelo" id="txtModelo" value="{{ auto.modelo }}">
+    <br>
+    <label for="">Ano</label>
+    <input type="number" name="txtAno" id="txtAno" value="{{ auto.ano }}">
+    <br>
+    <input type="submit" name="btnAno" id="btnAno" value="Modificar">
+</form>
+<h3>{{ mensagem }}</h3>
+{% endblock main%}

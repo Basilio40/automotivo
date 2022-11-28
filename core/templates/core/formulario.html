@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+
+{% block main %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<form class="form-control" action="" id="formularioAutomoveis" method="POST">
+    {% csrf_token %}
+    <label for="">Patente</label>
+    <input type="text" name="txtPatente" id="txtPatente">
+    <br>
+    <label for="">Marca</label>
+    <select name="cboMarca" id="cboMarca">
+        {% for m in marcas %}
+        <option value="{{ m.id }}">{{ m.nome}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="">Modelo</label>
+    <input type="text" name="txtModelo" id="txtModelo">
+    <br>
+    <label for="">Ano</label>
+    <input type="number" name="txtAno" id="txtAno">
+    <br>
+    <input type="submit" name="btnAno" id="btnAno" value="Salvar">
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>{{ mensagem }}</h3>
+{% endblock main%}
